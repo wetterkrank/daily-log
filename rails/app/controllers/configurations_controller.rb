@@ -11,16 +11,16 @@ class ConfigurationsController < ApplicationController
             presentation: "pop"
           }
         },
-        {
-          patterns: [
-            "/new$",
-            "/edit$",
-            "/settings"
-          ],
-          properties: {
-            context: "modal"
-          }
-        }
+        # {
+        #   patterns: [
+        #     "/new$",
+        #     "/edit$",
+        #     "/settings"
+        #   ],
+        #   properties: {
+        #     context: "modal"
+        #   }
+        # }
       ]
     }
   end

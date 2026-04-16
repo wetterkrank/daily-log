@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_145459) do
     t.date "occurred_on", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_exercise_entries_on_user_id"
   end
 
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_145459) do
     t.date "occurred_on", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_food_entries_on_user_id"
   end
 
@@ -35,12 +35,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_145459) do
     t.date "occurred_on", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_medication_entries_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "time_zone", default: "Pacific Time (US & Canada)", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_13_145459) do
     t.date "occurred_on", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.decimal "amount_value", precision: 10, scale: 2
     t.string "amount_unit", limit: 12
     t.index ["user_id"], name: "index_water_entries_on_user_id"
