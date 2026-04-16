@@ -1,10 +1,66 @@
-# Daily Log
+### android
+```
+19:32:24 web.1  | Started GET "/session/new" for 127.0.0.1 at 2026-04-16 19:32:24 +0200
+19:32:24 web.1  | Processing by SessionsController#new as HTML
 
-A Rails, iOS, and (upcoming) Android app to track my daily habits like exercise, medication, food, and water.
+19:32:42 web.1  | Started POST "/session" for 127.0.0.1 at 2026-04-16 19:32:42 +0200
+19:32:42 web.1  | Processing by SessionsController#create as TURBO_STREAM
 
-> [!TIP]
-> Check out the app on the web at [dailylog.ing](https://dailylog.ing) or the [App Store](https://apps.apple.com/us/app/daily-log-app/id6473819686).
+19:32:42 web.1  | Started GET "/days" for 127.0.0.1 at 2026-04-16 19:32:42 +0200
+19:32:42 web.1  | Processing by DaysController#index as TURBO_STREAM
+19:32:42 web.1  | Redirected to http://10.0.2.2:3000/days
 
-At its core, Daily Log is a Ruby on Rails web application. It uses [Turbo Native](https://masilotti.com/turbo-ios/) to render web content in the mobile apps, "wrapping" the screens in native chrome. This approach unlocks native transitions between screens, native navigation buttons, and modals/sheets for data entry.
+19:32:42 web.1  | Started GET "/days/2026-04-16" for 127.0.0.1 at 2026-04-16 19:32:42 +0200
+19:32:42 web.1  | Processing by DaysController#show as TURBO_STREAM
+19:32:42 web.1  | Redirected to http://10.0.2.2:3000/days/2026-04-16
 
-![Screenshots of the Daily Log mobile app](https://github.com/joemasilotti/daily-log/assets/2092156/a5d15dca-fb5a-4cf9-b031-3777cbf92e0f)
+*flash is shown*
+
+19:32:47 web.1  | Started GET "/exercise_entries/new?date=2026-04-16" for 127.0.0.1 at 2026-04-16 19:32:47 +0200
+19:32:47 web.1  | Processing by ExerciseEntriesController#new as HTML
+
+19:32:51 web.1  | Started POST "/exercise_entries" for 127.0.0.1 at 2026-04-16 19:32:51 +0200
+19:32:51 web.1  | Processing by ExerciseEntriesController#create as TURBO_STREAM
+19:32:51 web.1  | Redirected to http://10.0.2.2:3000/days/2026-04-16
+
+19:32:51 web.1  | Started GET "/days/2026-04-16" for 127.0.0.1 at 2026-04-16 19:32:51 +0200
+19:32:51 web.1  | Processing by DaysController#show as TURBO_STREAM
+
+19:32:51 web.1  | Started GET "/days/2026-04-16" for 127.0.0.1 at 2026-04-16 19:32:51 +0200
+19:32:51 web.1  | Processing by DaysController#show as HTML
+
+*flash is not shown*
+```
+
+### ios
+```
+20:27:05 web.1  | Started GET "/session/new" for ::1 at 2026-04-16 20:27:05 +0200
+20:27:19 web.1  | Started POST "/session" for ::1 at 2026-04-16 20:27:19 +0200
+20:27:19 web.1  | Processing by SessionsController#create as TURBO_STREAM
+20:27:19 web.1  | Redirected to http://localhost:3000/days
+
+20:27:19 web.1  | Started GET "/days" for ::1 at 2026-04-16 20:27:19 +0200
+20:27:19 web.1  | Processing by DaysController#index as TURBO_STREAM
+20:27:19 web.1  | Redirected to http://localhost:3000/days/2026-04-16
+
+20:27:19 web.1  | Started GET "/days/2026-04-16" for ::1 at 2026-04-16 20:27:19 +0200
+20:27:19 web.1  | Processing by DaysController#show as TURBO_STREAM
+
+*flash is shown*
+
+20:27:29 web.1  | Started GET "/exercise_entries/new?date=2026-04-16" for ::1 at 2026-04-16 20:27:29 +0200
+20:27:29 web.1  | Processing by ExerciseEntriesController#new as HTML
+
+20:27:32 web.1  | Started POST "/exercise_entries" for ::1 at 2026-04-16 20:27:32 +0200
+20:27:32 web.1  | Processing by ExerciseEntriesController#create as TURBO_STREAM
+20:27:32 web.1  | Redirected to http://localhost:3000/days/2026-04-16
+
+20:27:32 web.1  | Started GET "/days/2026-04-16" for ::1 at 2026-04-16 20:27:32 +0200
+20:27:32 web.1  | Processing by DaysController#show as TURBO_STREAM
+
+*flash is shown*
+```
+
+### However
+- if we disable the `context: "modal"` section in ConfigurationsContoller#ios, we'll get double requests and lose the flashes on ios, too
+- if we add a path configuration with `context: modal` for android (tried in a separate app), we'll still have double requests
